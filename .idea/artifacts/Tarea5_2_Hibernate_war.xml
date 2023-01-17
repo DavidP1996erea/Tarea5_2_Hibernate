@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Tarea5_2_Hibernate:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Tarea5_2_Hibernate</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Tarea5_2_Hibernate-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Tarea5_2_Hibernate:war exploded" />
+    </root>
+  </artifact>
+</component>
