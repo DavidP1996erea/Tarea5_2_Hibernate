@@ -33,8 +33,7 @@ public class PlayerEntity implements Serializable {
 
     }
 
-    public PlayerEntity(int id_Player, String nick, String password, String email) {
-        this.id_Player = id_Player;
+    public PlayerEntity(String nick, String password, String email) {
         this.nick = nick;
         this.password = password;
         this.email = email;

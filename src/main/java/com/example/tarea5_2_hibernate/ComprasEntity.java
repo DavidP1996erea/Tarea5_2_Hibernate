@@ -41,10 +41,8 @@ public class ComprasEntity implements Serializable {
 
     }
 
-    public ComprasEntity(int id_Compras, PlayerEntity id_Player, GamesEntity id_Games, int cosa, double precio, Date fechaCompra) {
-        this.id_Compras = id_Compras;
-        this.id_Player = id_Player;
-        this.id_Games = id_Games;
+    public ComprasEntity(int cosa, double precio, Date fechaCompra) {
+
         Cosa = cosa;
         Precio = precio;
         FechaCompra = fechaCompra;
@@ -62,6 +60,14 @@ public class ComprasEntity implements Serializable {
 
     public GamesEntity getId_Games() {
         return id_Games;
+    }
+
+    public void setId_Player(PlayerEntity id_Player) {
+        this.id_Player = id_Player;
+    }
+
+    public void setId_Games(GamesEntity id_Games) {
+        this.id_Games = id_Games;
     }
 
     public int getCosa() {

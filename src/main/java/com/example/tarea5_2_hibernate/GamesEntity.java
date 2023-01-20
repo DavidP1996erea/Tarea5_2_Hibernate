@@ -22,8 +22,7 @@ public class GamesEntity {
     public GamesEntity() {
     }
 
-    public GamesEntity(int id_Games, String nombre, Time tiempoJugado) {
-        this.id_Games = id_Games;
+    public GamesEntity(String nombre, Time tiempoJugado) {
         Nombre = nombre;
         this.tiempoJugado = tiempoJugado;
     }

@@ -16,9 +16,16 @@
         <property name="show_sql">true</property>
         <!-- Establece el contexto de la sesion-->
         <property name="current_session_context_class">thread</property>
+
+
+
+      <!-- Borra las tablas si existen al iniciar el programa
         <property name="hbm2ddl.auto">create</property>
+        -->
 
-
+        <mapping class="com.example.tarea5_2_hibernate.PlayerEntity"/>
+        <mapping class="com.example.tarea5_2_hibernate.GamesEntity"/>
+        <mapping class="com.example.tarea5_2_hibernate.ComprasEntity"/>
 
     </session-factory>
 </hibernate-configuration>
