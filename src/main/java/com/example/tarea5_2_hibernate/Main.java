@@ -13,6 +13,8 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -148,39 +150,46 @@ public class Main {
                     int cosaInsertar = sc6.nextInt();
                     System.out.println("Introduce el precio");
                     double precioInsertar = sc6.nextDouble();
-                    System.out.println("Introduce la fecha");
-                  /*  Date fechaCompra = sc6.nextLine();
+                    System.out.println("Introduce la fecha en el formato: yyyy-MM-dd ");
+                    String fecha = sc.nextLine();
 
 
-                    guardarGame(nombreJuego, tiempoJuego);*/
+                    guardarCompras(id_Player, id_Games, cosaInsertar, precioInsertar,  recogerFecha(fecha));
                     break;
-/*
+
                 case 10:
-                    System.out.println("Introduzca el id del juego a eliminar");
-                    int idEliminarJuego = sc.nextInt();
-                    eliminarGame(idEliminarJuego);
+                    System.out.println("Introduzca el id de la compra a eliminar");
+                    int idEliminarCompra = sc.nextInt();
+                    eliminarCompras(idEliminarCompra);
                     break;
 
                 case 11:
-                    Scanner sc5 = new Scanner(System.in);
-                    System.out.println("Introduzca el id del juego a actualizar");
-                    int idActualizarJuego = sc.nextInt();
+                    Scanner sc7 = new Scanner(System.in);
+                    System.out.println("Introduzca el id de la compra a actualizar");
+                    int idActualizarCompra= sc.nextInt();
+
 
                     // Se piden los datos al usuario
-                    System.out.println("Introduce el nombre del juego");
-                    String nombreJuegoActualizar = sc5.nextLine();
-                    System.out.println("Introduce el nuevo tiempo de juego");
-                    Time tiempoJuegoActualizar = Time.valueOf(sc5.nextLine());
+                    System.out.println("Introduce el id del jugador");
+                    int id_PlayerActualizar = sc7.nextInt();
+                    System.out.println("Introduce el id del juego");
+                    int id_GamesActualizar = sc7.nextInt();
+                    System.out.println("Introduce la cosa");
+                    int cosaActualizar = sc7.nextInt();
+                    System.out.println("Introduce el precio");
+                    double precioActualizar = sc7.nextDouble();
+                    System.out.println("Introduce la fecha en el formato: yyyy-MM-dd ");
+                    String fechaActualizar = sc7.nextLine();
 
-                    actualizarGame(idActualizarJuego, nombreJuegoActualizar, tiempoJuegoActualizar );
+                    actualizarCompras(idActualizarCompra, id_PlayerActualizar, id_GamesActualizar, cosaActualizar,precioActualizar,recogerFecha(fechaActualizar) );
                     break;
 
                 case 12:
 
-                    mostrarDatosGame();
+                    mostrarDatosCompras();
 
                     break;
-                    */
+
 
                 default:
                     System.out.println("Opción incorrecta");
@@ -208,10 +217,12 @@ public class Main {
         System.out.println("8. Mostrar datos de juegos");
 
 
-        System.out.println("9. Insertar juego");
-        System.out.println("10. Eliminar juego ");
-        System.out.println("11. Actualizar juego ");
-        System.out.println("12. Mostrar datos de juegos");
+        System.out.println("9. Insertar compra");
+        System.out.println("10. Eliminar compra ");
+        System.out.println("11. Actualizar compra ");
+        System.out.println("12. Mostrar datos de compra");
+
+
         System.out.println("13. Salir");
     }
 
@@ -328,9 +339,9 @@ public class Main {
 
 
     /**
-     * Se pide como parámetro los datos de la persona que se va a insertar, esos datos se meten en el constructor
-     * del objeto tipo PlayerEntidad. Una vez que se crea el objeto con los datos introducidos, se crea una
-     * transacción y se guarda la persona.
+     * Se pide como parámetro los datos de juego que se va a insertar, esos datos se meten en el constructor
+     * del objeto tipo GamesEntity. Una vez que se crea el objeto con los datos introducidos, se crea una
+     * transacción y se guarda el juego.
      * @param nombre
      * @param tiempoJugado
      */
@@ -346,9 +357,9 @@ public class Main {
     }
 
     /**
-     * Método que requiere un int como parámetro que será el id de la persona que se desea eliminar. Se crea un
-     * objeto de tipo PlaterEntidad y se recoge la persona con el id que es pasado por parámetro, luego se borra
-     * a esa persona.
+     * Método que requiere un int como parámetro que será el id del juego que se desea eliminar. Se crea un
+     * objeto de tipo GamesEntity y se recoge el juego con el id que es pasado por parámetro, luego se borra
+     * a ese juego.
      * @param id
      */
     private static void eliminarGame(int id){
@@ -364,9 +375,9 @@ public class Main {
 
 
     /**
-     * Este método requiere un int como parámetro, que será el id de una persona que se desea modificar. Al igual
-     * que en el método eliminar, se obtiene una persona con este id, y una vez que se hacen las modificaciones,
-     *  se actualiza dicha persona.
+     * Este método requiere un int como parámetro, que será el id de un juego que se desea modificar. Al igual
+     * que en el método eliminar, se obtiene un juego con este id, y una vez que se hacen las modificaciones,
+     *  se actualiza dicho juego.
      * @param id
      * @param nombre
      * @param tiempoJugado
@@ -387,9 +398,9 @@ public class Main {
     }
 
     /**
-     * Con este método obtenemos todos los datos de todas las personas. Primero se crea un objeto tipo CriteriaBuilder
+     * Con este método obtenemos todos los datos de todos los juegos. Primero se crea un objeto tipo CriteriaBuilder
      * donde se hará uso de la session. Luego se crean una serie de objetos para crear la conexión con la tabla
-     * correspondiente y para coger todos los datos. Estos datos se recogen en una lista de tipo PlayerEntidad,
+     * correspondiente y para coger todos los datos. Estos datos se recogen en una lista de tipo GamesEntity,
      * que se recorrerá con un for each para mostrar los datos.
      */
     public static void mostrarDatosGame() {
@@ -420,9 +431,9 @@ public class Main {
 
 
     /**
-     * Se pide como parámetro los datos de la persona que se va a insertar, esos datos se meten en el constructor
-     * del objeto tipo PlayerEntidad. Una vez que se crea el objeto con los datos introducidos, se crea una
-     * transacción y se guarda la persona.
+     * Se pide como parámetro los datos de la compra que se va a insertar, esos datos se meten en el constructor
+     * del objeto tipo ComprasEntity. Una vez que se crea el objeto con los datos introducidos, se crea una
+     * transacción y se guarda la compra.
      * @param id_Player
      * @param id_Games
      * @param cosa
@@ -443,9 +454,9 @@ public class Main {
     }
 
     /**
-     * Método que requiere un int como parámetro que será el id de la persona que se desea eliminar. Se crea un
-     * objeto de tipo PlaterEntidad y se recoge la persona con el id que es pasado por parámetro, luego se borra
-     * a esa persona.
+     * Método que requiere un int como parámetro que será el id de la compra que se desea eliminar. Se crea un
+     * objeto de tipo ComprasEntity y se recoge la compra con el id que es pasado por parámetro, luego se borra
+     * a esa compra.
      * @param id
      */
     private static void eliminarCompras(int id){
@@ -461,9 +472,9 @@ public class Main {
 
 
     /**
-     * Este método requiere un int como parámetro, que será el id de una persona que se desea modificar. Al igual
-     * que en el método eliminar, se obtiene una persona con este id, y una vez que se hacen las modificaciones,
-     *  se actualiza dicha persona.
+     * Este método requiere un int como parámetro, que será el id de una compra que se desea modificar. Al igual
+     * que en el método eliminar, se obtiene una compra con este id, y una vez que se hacen las modificaciones,
+     *  se actualiza dicha compra.
      * @param id_Player
      * @param id_Games
      * @param cosa
@@ -490,9 +501,9 @@ public class Main {
     }
 
     /**
-     * Con este método obtenemos todos los datos de todas las personas. Primero se crea un objeto tipo CriteriaBuilder
+     * Con este método obtenemos todos los datos de todas las compras. Primero se crea un objeto tipo CriteriaBuilder
      * donde se hará uso de la session. Luego se crean una serie de objetos para crear la conexión con la tabla
-     * correspondiente y para coger todos los datos. Estos datos se recogen en una lista de tipo PlayerEntidad,
+     * correspondiente y para coger todos los datos. Estos datos se recogen en una lista de tipo ComprasEntity,
      * que se recorrerá con un for each para mostrar los datos.
      */
     public static void mostrarDatosCompras() {
@@ -509,11 +520,34 @@ public class Main {
 
         for (ComprasEntity compras:   allQuery.getResultList()
         ) {
-            System.out.println(compras.getId_Player() + " " + compras.getId_Games() + " "
-                    + compras.getCosa() + " " + compras.getPrecio() + " "+ compras.getFechaCompra());
+            System.out.println("id jugador: "+ compras.getId_Player().getId_Player() + " "+ " id juego: "+ compras.getId_Games().getId_Games() + " "
+                  + "Cosa: "+  compras.getCosa() + " " + "Precio: "+  compras.getPrecio() + " "+"Fecha: "+  compras.getFechaCompra());
         }
         transaction.commit();
 
+    }
+
+
+    /**
+     * Método que devuelve un objeto Date. Se pide como parámetro un String que contendrá la fecha,
+     * que será parseado a Date y devuelto.
+     * @param fecha
+     * @return
+     */
+    public static Date recogerFecha(String fecha){
+        Date  fechaEnviar = null;
+
+        try {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+
+
+            String dateString = format.format( new Date()   );
+            fechaEnviar       = format.parse ( fecha );
+        } catch (Exception e) {
+
+        }
+        return fechaEnviar;
     }
 
 }
